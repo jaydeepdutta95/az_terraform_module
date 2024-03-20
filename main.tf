@@ -35,20 +35,20 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "akshay_rsg" {
-  name     = "akshay_rsg"
+resource "azurerm_resource_group" "jaydeep_rg" {
+  name     = "cloud_practice"
   location = "Central India"
 }
 module "virtual-network" {
   source                        = "./VirtualNET"
   virtual_network_name          = var.virtual_network_name
-  resource_group_name           = azurerm_resource_group.akshay_rsg.name
+  resource_group_name           = azurerm_resource_group.jaydeep_rg.name
   location                      = var.location
   virtual_network_address_space = var.virtual_network_address_space
   subnet_name                   = var.subnet_name
   subnet_address_prefix         = var.subnet_address_prefix
   depends_on = [
-    azurerm_resource_group.akshay_rsg
+    azurerm_resource_group.jaydeep_rg
   ]
 
 }
@@ -58,14 +58,14 @@ resource "azurerm_network_interface" "nic" {
  for_each            = toset(var.names)
     name                = "${each.value}-nic"
     location            = var.location
-    resource_group_name = azurerm_resource_group.akshay_rsg.name
+    resource_group_name = azurerm_resource_group.jaydeep_rg.name
     ip_configuration {
        name                          = "ipconfiguration1"
         subnet_id                     = module.virtual-network.subnet_id    
        private_ip_address_allocation = "Dynamic"
          }
      depends_on = [
-     azurerm_resource_group.akshay_rsg
+     azurerm_resource_group.jaydeep_rg
    ]
 }
 //new line added //
@@ -75,7 +75,7 @@ module "VMachine" {
    vmname   = each.value
 
   location              = var.location
-   resource_group_name   = azurerm_resource_group.akshay_rsg.name
+   resource_group_name   = azurerm_resource_group.jaydeep_rg.name
     network_interface_ids = [
            azurerm_network_interface.nic[each.key].id,
 ]
@@ -88,7 +88,7 @@ module "VMachine" {
    image_sku             = var.image_sku
 
 depends_on = [
-     azurerm_resource_group.akshay_rsg
+     azurerm_resource_group.jaydeep_rg
    ]
  }
 resource "random_pet" "azurerm_kubernetes_cluster_name" {
@@ -100,9 +100,9 @@ resource "random_pet" "azurerm_kubernetes_cluster_dns_prefix" {
 }
 
 resource "azurerm_kubernetes_cluster" "k8s" {
-  location            = azurerm_resource_group.akshay_rsg.location
+  location            = azurerm_resource_group.jaydeep_rg.location
   name                = random_pet.azurerm_kubernetes_cluster_name.id
-  resource_group_name = azurerm_resource_group.akshay_rsg.name
+  resource_group_name = azurerm_resource_group.jaydeep_rg.name
   dns_prefix          = random_pet.azurerm_kubernetes_cluster_dns_prefix.id
 
   identity {
