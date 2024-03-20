@@ -68,7 +68,7 @@ resource "azurerm_network_interface" "nic" {
      azurerm_resource_group.akshay_rsg
    ]
 }
-
+//new line added //
 module "VMachine" {
     source   = "./VMachine"
   for_each = toset(var.names)
