@@ -1,5 +1,5 @@
 output "resource_group_name" {
-  value = azurerm_resource_group.akshay_rsg.name
+  value = azurerm_resource_group.jaydeep_rg.name
 }
 
 output "kubernetes_cluster_name" {
