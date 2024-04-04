@@ -1,20 +1,21 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This is terraform code, with which you can create automated Infra Cluster for your application Environment. This terraform code is modularaized. 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Copy this GitHub code into you local or in Azure DevOps Repo by importing and create a build pipeline 
+1.	Go to Azure DevOps Repo and create a new one by import my github Repo (no authentication is needed as this is public Repo)
+2.	Set up Build Pipeline with Azure Subscription and Storage Account and Container Details ( these are requried to store the Remote Backend of terraform State file)
+3.	Add Terraform Init, Plan, Apply with the help of Task Assistant 
+4.	Run the Build Pipeline
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Prerequisite
+1. One Azure Cloud Account with a valid Subscription
+2. Azure Resoruce Group
+3. Storage Account with one Container
 
 # Contribute
 TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Reference
+Please follow and checkout my blog for more details 
+I have explained here how to deploy in detailed. 
